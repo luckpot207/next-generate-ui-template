@@ -5,8 +5,9 @@ import styles from '@/styles/Home.module.css'
 import Landing from "../components/Landing/index";
 import LandingContainer from "@/components/LandingContainer";
 import Landing_JobStyle from "@/components/Landing-job-style";
-import Freelancers from "@/components/Freelancers";
+
 import Footer from "@/components/Footer";
+import Landing_product from "@/components/Landing-product";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,7 @@ export default function Home() {
           <Landing />
           <LandingContainer />
           <Landing_JobStyle />
-          <Freelancers />
+          <Landing_product />
           <Footer />
         </div>
       </main>

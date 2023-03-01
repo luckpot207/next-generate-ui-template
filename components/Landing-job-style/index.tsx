@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import WavyText from "../../global_componenets/WavyText";
+import WavyText from "../global/WavyText";
+
 
 export default function Landing_JobStyle() {
   return (

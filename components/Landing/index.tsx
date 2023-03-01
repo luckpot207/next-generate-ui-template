@@ -1,7 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 export default function Landing() {
+  const [email, setEmail] = useState("");
+  const handleRegister = async (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    console.log("click", email);
+
+    let response = await axios.get(
+      `http://localhost:8080/api/register?email=${email}`
+    );
+    setEmail("");
+
+    // const response = await fetch("http://localhost:8080/api/register", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify({ email })
+    // });
+
+    const data = response.data;
+    console.log(data);
+  };
   return (
     <div className="flex justify-items-center items-center space-x-6 mx-auto">
       <div className="flex flex-col space-y-6">
@@ -16,7 +38,7 @@ export default function Landing() {
           inspiration.
         </p>
 
-        <form className="w-[50%]">
+        <form className="w-[50%]" onSubmit={handleRegister}>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
@@ -31,7 +53,9 @@ export default function Landing() {
               </svg>
             </div>
             <input
-              type="search"
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
               id="search"
               className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="name@lauchgen.com"

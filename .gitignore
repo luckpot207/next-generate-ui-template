@@ -12,6 +12,11 @@
 /.next/
 /out/
 
+# server
+/server/node_modules
+/server/.vscode
+/server/dist
+
 # production
 /build
 

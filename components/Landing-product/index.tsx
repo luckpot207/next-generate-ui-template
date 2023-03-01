@@ -45,7 +45,7 @@ const teamMembers = [
   },
 ];
 
-const Freelancers = () => {
+const Landing_product = () => {
   const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {
@@ -137,4 +137,4 @@ const Freelancers = () => {
   );
 };
 
-export default Freelancers;
+export default Landing_product;

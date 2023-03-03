@@ -1,139 +1,65 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { Navigation } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useState } from "react";
+import axios from "axios";
 
 import "swiper/css";
 
-const teamMembers = [
-  {
-    avatar: "images/avatars/team-1.jpg",
-    name: "Agus R.",
-    role: "Web & UI Designer",
-    detail: ["UX Design", "Web Design"],
-  },
-  {
-    avatar: "images/avatars/team-2.jpg",
-    name: "Kathrina T.",
-    role: "Copywriter",
-    detail: ["Sales Copy", "Copywriting"],
-  },
-  {
-    avatar: "images/avatars/team-3.jpg",
-    name: "Daniela D.",
-    role: "Professional Marketer",
-    detail: ["Marketing", "Business Dev"],
-  },
-  {
-    avatar: "images/avatars/team-1.jpg",
-    name: "Agus R.",
-    role: "Web & UI Designer",
-    detail: ["UX Design", "Web Design"],
-  },
-  {
-    avatar: "images/avatars/team-2.jpg",
-    name: "Kathrina T.",
-    role: "Copywriter",
-    detail: ["Sales Copy", "Copywriting"],
-  },
-  {
-    avatar: "images/avatars/team-3.jpg",
-    name: "Daniela D.",
-    role: "Professional Marketer",
-    detail: ["Marketing", "Business Dev"],
-  },
-];
-
 const Landing_product = () => {
-  const [domLoaded, setDomLoaded] = useState(false);
+  const [email, setEmail] = useState("");
+  const handleRegister = async (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    console.log("click", email);
 
-  useEffect(() => {
-    setDomLoaded(true);
-  }, []);
+    let response = await axios.get(
+      `http://localhost:8080/api/register?email=${email}`
+    );
+    setEmail("");
 
+    const data = response.data;
+    console.log(data);
+  };
   return (
-    <>
-      {domLoaded && (
-        <div className="flex justify-center mb-10 ml-[3.6%] mr-[3.6%]">
-          <motion.div
-            initial={{ opacity: 0, translateY: 50 }}
-            whileInView={{ opacity: 1, translateY: 0 }}
-            transition={{ delay: 0.2 }}
-            className="flex flex-col container mt-32 sm:mt-10"
-          >
-            <div className="flex items-center justify-between sm:mt-10">
-              <h1 className="lg:text-4xl font-extrabold text-gray-800 text-left md: text-[28px] font-[900]">
-                Explore some of our Featured Freelancers
-              </h1>
-              <div className="flex items-center justify-center">
-                <button className="next-btn w-[50px] h-[50px] px-3 py-2 bg-[#5051F90D] rounded-lg mr-4">
-                  <img src="images/arrow-left.png" alt="left" />
-                </button>
-                <button className="prev-btn w-[50px] h-[50px] px-3 py-2 bg-[#5051F90D] rounded-lg mr-4">
-                  <img src="images/arrow-right.png" alt="right" />
-                </button>
-              </div>
-            </div>
-            <Swiper
-              modules={[Navigation]}
-              spaceBetween={30}
-              slidesPerView={1}
-              style={{ overflow: "hidden" }}
-              className="w-full mt-6"
-              loop
-              navigation={{
-                nextEl: ".prev-btn",
-                prevEl: ".next-btn",
-              }}
-              breakpoints={{
-                640: {
-                  slidesPerView: 2,
-                },
-                1280: {
-                  slidesPerView: 3,
-                },
-                1536: {
-                  slidesPerView: 4,
-                },
-              }}
+    <div className="flex flex-col justify-items-center items-center  mt-48">
+      <h1 className="text-4xl font-bold mb-6 md: text-[28px] md:font-[900]">
+        Join the Beta
+      </h1>
+      <form
+        className="w-[30%] flex items-center space-x-6"
+        onSubmit={handleRegister}
+      >
+        <div className="relative w-[70%]">
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg
+              aria-hidden="true"
+              className="w-5 h-5 text-gray-500 dark:text-gray-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              {teamMembers.map((member, j) => (
-                <SwiperSlide key={j}>
-                  <div className="slider-item bg-white p-5 shadow-lg my-4">
-                    <div className="flex flex-col">
-                      <div className="flex items-center justify-start">
-                        <img
-                          src={member.avatar}
-                          alt={member.name}
-                          className="w-12 md:w-20 rounded-full"
-                        />
-                        <div className="flex flex-col items-start ml-3">
-                          <h2 className="text-blue-900 text-2xl">
-                            {member.name}
-                          </h2>
-                          <p className=" text-gray-400">{member.role}</p>
-                        </div>
-                      </div>
-                      <div className="flex justify-start mt-3">
-                        {member.detail.map((d, i) => (
-                          <span
-                            key={i}
-                            className="px-2 py-1 border border-gray-400 text-gray-400 rounded mr-2"
-                          >
-                            {d}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </motion.div>
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+            </svg>
+          </div>
+          <input
+            type="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            id="simple-search"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Email"
+            required
+          />
         </div>
-      )}
-    </>
+        <button
+          type="submit"
+          className="relative inline-flex items-center justify-center p-0.5  mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+        >
+          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+            Send email
+          </span>
+        </button>
+      </form>
+    </div>
   );
 };
 

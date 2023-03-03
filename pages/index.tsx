@@ -1,11 +1,8 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import Head from "next/head";
+import { Inter } from "next/font/google";
 import Landing from "../components/Landing/index";
 import LandingContainer from "@/components/LandingContainer";
 import Landing_JobStyle from "@/components/Landing-job-style";
-
 import Footer from "@/components/Footer";
 import Landing_product from "@/components/Landing-product";
 
@@ -20,15 +17,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className="flex flex-col">
-          <Landing />
-          <LandingContainer />
-          <Landing_JobStyle />
-          <Landing_product />
-          <Footer />
-        </div>
-      </main>
+
+      <div className="flex flex-col ">
+        <Landing />
+        <LandingContainer />
+        <Landing_JobStyle />
+        <Landing_product />
+        <Footer />
+      </div>
     </>
   );
 }

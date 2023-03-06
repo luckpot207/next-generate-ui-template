@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import Landing from "../components/Landing/index";
 import LandingContainer from "@/components/LandingContainer";
-import Landing_JobStyle from "@/components/Landing-job-style";
+import Landing_Job_Style from "@/components/Landing-job-style";
 import Footer from "@/components/Footer";
 import Landing_product from "@/components/Landing-product";
 
@@ -21,7 +21,7 @@ export default function Home() {
       <div className="flex flex-col ">
         <Landing />
         <LandingContainer />
-        <Landing_JobStyle />
+        <Landing_Job_Style />
         <Landing_product />
         <Footer />
       </div>
